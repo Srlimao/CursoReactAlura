@@ -2,9 +2,12 @@
   "name": "petlura",
   "version": "1.0.0",
   "description": "",
-  "main": "cliente.js",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC"

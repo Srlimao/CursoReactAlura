@@ -1,3 +1,5 @@
+import { deletaCliente, listarClientes} from '../../api/cliente.js'
+
 const removeCliente = (id) => {
     if(confirm('Deseja deletar o cliente?')){
         deletaCliente(id);
@@ -12,7 +14,7 @@ const exibeCliente = (cpf, nome, id) => {
         `<td>${cpf}</td>
         <td>${nome}</td>
         <button type="button" class="btn btn-danger" onclick="removeCliente(${id})"> Deletar</button>
-        <a href="edita-cliente.html?id=${id}">
+        <a href="../componentes/edita/edita-cliente.html?id=${id}">
         <button type="button" class="btn btn-info">Editar</button>
         </a>
         

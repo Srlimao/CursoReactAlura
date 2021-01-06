@@ -57,3 +57,11 @@ const editaCliente = (id, nome, cpf) => {
         return resp;
     })
 }
+
+export {
+    listarClientes,
+    deletaCliente,
+    detalhaCliente,
+    editaCliente,
+    cadastraClientes
+}
