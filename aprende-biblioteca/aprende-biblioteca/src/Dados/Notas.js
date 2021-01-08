@@ -13,12 +13,15 @@ class Notas {
     apagarNota(indice){
         console.log(indice);
         console.log(this.notas);
-        this.notas.splice(indice);
+        this.notas.splice(indice,1);
         this._notificar();
     }
 
     inscrever(func){
         this._inscritos.push(func);
+    }
+    desinscrever(func){
+        this._inscritos = this._inscritos.filter(f => f !== func);
     }
     _notificar(){
         this._inscritos.forEach(func => func(this.notas));
