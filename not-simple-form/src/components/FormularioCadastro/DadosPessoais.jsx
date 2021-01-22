@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, TextField, Switch, FormControlLabel } from '@material-ui/core';
 
-const DadosPessoais = ({funcValidaCpf,aoEnviar}) => {
+const DadosPessoais = ({validacoes,proximo,coletarDados}) => {
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [cpf, setCpf] = useState(0);
@@ -12,7 +12,8 @@ const DadosPessoais = ({funcValidaCpf,aoEnviar}) => {
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
-            aoEnviar({pessoais:{nome:nome,sobrenome:sobrenome,cpf:cpf,promo:promo,news:news}});
+            coletarDados({nome:nome,sobrenome:sobrenome,cpf:cpf,promo:promo,news:news});
+            proximo();
         }}>
             <TextField 
                 id="name-input" 
@@ -56,7 +57,7 @@ const DadosPessoais = ({funcValidaCpf,aoEnviar}) => {
                     setErros({cpf:{valido:true}})
                 }}
                 onBlur={(e) => {
-                    setErros({cpf:funcValidaCpf(cpf)})
+                    setErros({cpf:validacoes.cpf(cpf)})
                 }}
                 value={cpf}
                 type="number"

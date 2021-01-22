@@ -1,13 +1,15 @@
 import { TextField, Button } from '@material-ui/core';
 import React, {useState} from 'react';
 
-const DadosUsuario = ({aoEnviar}) => {
+const DadosUsuario = ({validacoes,proximo,coletarDados}) => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [erros, setErros] = useState({senha:{valido:true,texto:""}})
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
-            aoEnviar({usuario:{email:email, senha:senha}});
+            coletarDados({email:email, senha:senha});
+            proximo();
         }}>
             <TextField 
                 id="email" 
@@ -33,8 +35,14 @@ const DadosUsuario = ({aoEnviar}) => {
                 required
                 onChange={(e) => {
                     setSenha(e.target.value);
+                    setErros({senha:{valido:true}})
+                }}
+                onBlur={(e) => {
+                    setErros({senha:validacoes.senha(senha)})
                 }}
                 value={senha}
+                error={!erros.senha.valido}
+                helperText={erros.senha.valido ? "" : erros.senha.texto} 
             />
 
             <Button type="submit" color="primary" variant="contained">Próximo</Button>

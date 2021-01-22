@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
 
-const DadosEntrega = ({aoEnviar}) => {
+const DadosEntrega = ({validacoes,proximo,coletarDados}) => {
     const [cep, setCep] = useState("");
     const [numero, setNumero] = useState("");
     const [endereco, setEndereco] = useState("");
@@ -10,7 +10,8 @@ const DadosEntrega = ({aoEnviar}) => {
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
-            aoEnviar({entrega:{cep:cep,numero:numero,endereco:endereco,estado:estado,cidade:cidade}});
+            coletarDados({cep:cep,numero:numero,endereco:endereco,estado:estado,cidade:cidade});
+            proximo();
         }}>
             <TextField id="cep" label="cep" type="number" variant="outlined" margin="dense" required
                 onChange={(e) => { setCep(e.target.value);}}
